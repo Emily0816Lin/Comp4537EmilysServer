@@ -13,18 +13,18 @@ class DictionaryManager {
     addWord(word, definition, requestCount) {
         const existingEntry = this.dictionary.find(item => item.word.toLowerCase() === word.toLowerCase());
         if (existingEntry) {
-            return { 
-                success: false, 
+            return {
+                success: false,
                 message: messages.errors.wordExists.replace('%1', word),
                 requestCount: requestCount,
             };
         } else {
             this.dictionary.push({ word, definition });
-            return { 
-                success: true, 
-                message: messages.success.newEntryRecorded.replace('%1', word).replace('%2', definition).replace('%3', requestCount), 
+            return {
+                success: true,
+                message: messages.success.newEntryRecorded.replace('%1', word).replace('%2', definition).replace('%3', requestCount),
                 requestCount: requestCount,
-                totalEntries: this.dictionary.length 
+                totalEntries: this.dictionary.length
             };
         }
     }
@@ -119,7 +119,7 @@ class DictionaryServer {
 
             if (!word || !definition || /\d/.test(word)) {
                 res.statusCode = 400;
-                res.end(JSON.stringify({ 
+                res.end(JSON.stringify({
                     message: messages.errors.invalidInput,
                     requestCount: this.requestCount,
                 }));
@@ -136,7 +136,7 @@ class DictionaryServer {
                 }));
             } else {
                 res.statusCode = 409;
-                res.end(JSON.stringify({ 
+                res.end(JSON.stringify({
                     message: result.message,
                     requestCount: this.requestCount,
                 }));
@@ -145,13 +145,22 @@ class DictionaryServer {
     }
 
     // Method to start the server
+    // start(port) {
+    //     this.server.listen(port, () => {
+    //         console.log(`Server is running on port ${port}`);
+    //     });
+    // }
+
+
+    // Method to start the server
     start(port) {
-        this.server.listen(port, () => {
-            console.log(`Server is running on port ${port}`);
+        const PORT = port || process.env.PORT || 3000; // Use the Heroku-assigned port if available
+        this.server.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
         });
     }
 }
 
 // Initialize and start the server
 const dictionaryServer = new DictionaryServer();
-dictionaryServer.start(3000);
+dictionaryServer.start();
