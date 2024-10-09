@@ -2,9 +2,9 @@
   "name": "comp4537emilysserver",
   "version": "1.0.0",
   "description": "",
-  "main": "COMP4537/labs/4/app.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node COMP4537/labs/4/app.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
