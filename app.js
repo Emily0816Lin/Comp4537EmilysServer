@@ -62,7 +62,6 @@ class DictionaryServer {
     handleRequest(req, res) {
         // res.setHeader('Content-Type', 'application/json');
 
-
         // Add CORS headers to allow cross-origin requests
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -74,7 +73,7 @@ class DictionaryServer {
             return;
         }
 
-        if (req.method === 'GET' && req.url.startsWith('/api/definitions')) {
+        if (req.method === 'GET' && req.url.startsWith('/api/definitions/')) {
             this.handleGetRequest(req, res);
         } else if (req.method === 'POST' && req.url === '/api/definitions') {
             this.handlePostRequest(req, res);
@@ -143,14 +142,6 @@ class DictionaryServer {
             }
         });
     }
-
-    // Method to start the server
-    // start(port) {
-    //     this.server.listen(port, () => {
-    //         console.log(`Server is running on port ${port}`);
-    //     });
-    // }
-
 
     // Method to start the server
     start(port) {
