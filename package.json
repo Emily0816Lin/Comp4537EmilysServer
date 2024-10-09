@@ -1,0 +1,13 @@
+{
+  "name": "comp4537emilysserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "COMP4537/labs/4/app.js",
+  "scripts": {
+    "start": "node COMP4537/labs/4/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
